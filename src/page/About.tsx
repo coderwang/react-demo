@@ -3,8 +3,7 @@ import React, { useState } from 'react';
 const About: React.FC = () => {
   const [count, setCount] = useState(0);
 
-  let a = 1
-  a = '2'
+
 
   return (
     <div>
@@ -13,7 +12,7 @@ const About: React.FC = () => {
       <div>count: {count}</div>
       <button onClick={() => { setCount(count + 1) }}>count++</button>
     </div>
-  )
+  );
 };
 
 export default About;
