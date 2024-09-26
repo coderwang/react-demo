@@ -5,7 +5,8 @@
     "type-check": "tsc --noEmit",
     "tsc": "tsc",
     "lint": "eslint . --ext .ts,.tsx",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "format": "prettier --write \"src/**/*.{ts,tsx}\""
   },
   "dependencies": {
     "@types/react-router-dom": "^5.3.3",
@@ -38,6 +39,7 @@
   "lint-staged": {
     "*.{ts,tsx}": [
       "eslint --fix",
+      "prettier --write",
       "tsc-files --noEmit"
     ]
   }

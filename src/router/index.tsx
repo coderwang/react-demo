@@ -5,20 +5,20 @@ import Home from '../page/Home';
 import About from '../page/About';
 
 const routes: RouteObject[] = [
-  {
-    path: '/',
-    element: <App />,
-    children: [
-      {
-        index: true,
-        element: <Home />,
-      },
-      {
-        path: 'about',
-        element: <About />,
-      },
-    ],
-  },
+	{
+		path: '/',
+		element: <App />,
+		children: [
+			{
+				index: true,
+				element: <Home />,
+			},
+			{
+				path: 'about',
+				element: <About />,
+			},
+		],
+	},
 ];
 
 const router = createBrowserRouter(routes);
