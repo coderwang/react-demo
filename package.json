@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "webpack serve --mode development",
+    "start": "NODE_ENV=development webpack serve --mode development",
     "build": "webpack --mode production",
     "type-check": "tsc --noEmit",
     "tsc": "tsc",
@@ -33,6 +33,7 @@
     "husky": "^9.1.6",
     "less": "^4.2.0",
     "less-loader": "^12.2.0",
+    "mini-css-extract-plugin": "^2.9.1",
     "postcss": "^8.4.47",
     "postcss-loader": "^8.1.1",
     "postcss-px-to-viewport": "^1.1.1",

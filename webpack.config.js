@@ -1,5 +1,8 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+const isDev = process.env.NODE_ENV === 'development';
 
 module.exports = {
 	entry: './src/index.tsx',
@@ -20,7 +23,23 @@ module.exports = {
 			},
 			{
 				test: /\.less$/,
-				use: ['style-loader', 'css-loader', 'less-loader', 'postcss-loader'],
+				use: [
+					MiniCssExtractPlugin.loader,
+					{
+						loader: 'css-loader',
+						options: {
+							modules: {
+								namedExport: false, // v7需要设为false，以支持 import default
+								exportLocalsConvention: 'as-is',
+								localIdentName: isDev
+									? '[path][name]__[local]--[hash:base64:5]'
+									: '[local]_[hash:base64:5]',
+							},
+						},
+					},
+					'less-loader',
+					'postcss-loader',
+				],
 			},
 			{
 				test: /\.(png|jpg|jpeg|gif)$/,
@@ -62,6 +81,9 @@ module.exports = {
 	plugins: [
 		new HtmlWebpackPlugin({
 			template: './public/index.html',
+		}),
+		new MiniCssExtractPlugin({
+			filename: 'css/[name]-[contenthash].css',
 		}),
 	],
 	devServer: {

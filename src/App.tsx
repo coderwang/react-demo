@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
-import './assets/styles/App.less';
+import styles from './assets/styles/App.less';
 
 const App: React.FC = () => {
 	return (
-		<div className="app">
+		<div className={styles.app}>
 			<nav>
 				<ul>
 					<li>
