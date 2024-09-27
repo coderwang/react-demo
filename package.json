@@ -51,7 +51,7 @@
     "*.{ts,tsx}": [
       "eslint --fix",
       "prettier --write",
-      "tsc-files --noEmit"
+      "tsc-files global.d.ts --noEmit"
     ]
   }
 }

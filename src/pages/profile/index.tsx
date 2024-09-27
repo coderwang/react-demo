@@ -1,13 +1,14 @@
 import React from 'react';
 import avatar from 'assets/images/avatar.png';
 import { ReactComponent as Clock } from 'assets/svg/clock.svg';
+import styles from './index.less';
 
 const Page = () => {
 	return (
-		<div>
-			<img src={avatar} alt="" />
+		<div className={styles.page}>
+			<img className="avatar" src={avatar} alt="" />
 			<br />
-			<Clock />
+			<Clock className="clock" />
 		</div>
 	);
 };

@@ -24,7 +24,7 @@ module.exports = [
 			...reactRecommended.rules,
 			...tsRecommended.rules,
 			...prettierConfig.rules,
-			'prettier/prettier': 'error',
+			'prettier/prettier': 'off', // 关闭prettier检查
 			'@typescript-eslint/no-explicit-any': 'error',
 			'@typescript-eslint/explicit-function-return-type': 'off',
 			'react/prop-types': 'off',
