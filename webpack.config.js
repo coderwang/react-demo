@@ -28,7 +28,7 @@ module.exports = {
 			{
 				test: /\.less$/,
 				use: [
-					MiniCssExtractPlugin.loader,
+					isDev ? 'style-loader' : MiniCssExtractPlugin.loader, // 开发环境使用style-loader（hmr），生产环境使用MiniCssExtractPlugin.loader（缓存）
 					{
 						loader: 'css-loader',
 						options: {
