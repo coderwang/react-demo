@@ -52,8 +52,8 @@ declare module '*.module.scss' {
 }
 
 declare module '*.less' {
-	const content: { [className: string]: string };
-	export default content;
+	const classes: Readonly<Record<string, string>>;
+	export default classes;
 }
 
 declare module '*.module.less' {

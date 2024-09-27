@@ -4,6 +4,7 @@ import App from '../App';
 import Home from '../pages/home';
 import About from '../pages/about';
 import Profile from '../pages/profile';
+import KeepAlive from 'react-activation';
 
 const routes: RouteObject[] = [
 	{
@@ -16,7 +17,11 @@ const routes: RouteObject[] = [
 			},
 			{
 				path: 'about',
-				element: <About />,
+				element: (
+					<KeepAlive saveScrollPosition="screen">
+						<About />
+					</KeepAlive>
+				),
 			},
 			{
 				path: 'profile',
