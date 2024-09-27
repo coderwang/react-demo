@@ -98,4 +98,5 @@ module.exports = {
 		open: true,
 		historyApiFallback: true, // 解决刷新404问题
 	},
+	devtool: isDev ? 'eval-cheap-module-source-map' : 'hidden-source-map',
 };
