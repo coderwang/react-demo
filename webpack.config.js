@@ -95,6 +95,7 @@ module.exports = {
 			directory: path.join(__dirname, 'public'),
 		},
 		port: 3000,
+		open: true,
 		historyApiFallback: true, // 解决刷新404问题
 	},
 };
