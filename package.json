@@ -1,7 +1,7 @@
 {
   "scripts": {
-    "start": "NODE_ENV=development webpack serve --mode development",
-    "build": "webpack --mode production",
+    "start": "cross-env NODE_ENV=development webpack-dev-server",
+    "build": "cross-env NODE_ENV=production webpack",
     "type-check": "tsc --noEmit",
     "tsc": "tsc",
     "lint": "eslint . --ext .ts,.tsx",
@@ -26,6 +26,7 @@
     "@typescript-eslint/eslint-plugin": "^8.7.0",
     "@typescript-eslint/parser": "^8.7.0",
     "babel-loader": "^9.2.1",
+    "cross-env": "^7.0.3",
     "css-loader": "^7.1.2",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
