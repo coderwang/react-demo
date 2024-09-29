@@ -11,6 +11,9 @@ const App: React.FC = () => {
 						<Link to="/">首页</Link>
 					</li>
 					<li>
+						<Link to="/list">列表</Link>
+					</li>
+					<li>
 						<Link to="/about">关于</Link>
 					</li>
 					<li>

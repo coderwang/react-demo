@@ -5,6 +5,7 @@ import Home from '../pages/home';
 import About from '../pages/about';
 import Profile from '../pages/profile';
 import KeepAlive from 'react-activation';
+import List from '@/pages/list';
 
 const routes: RouteObject[] = [
 	{
@@ -14,6 +15,10 @@ const routes: RouteObject[] = [
 			{
 				index: true,
 				element: <Home />,
+			},
+			{
+				path: 'list',
+				element: <List />,
 			},
 			{
 				path: 'about',
