@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useActivate, useUnactivate } from 'react-activation';
 import { useNavigate } from 'react-router-dom';
 import styles from './index.less';
+import clsx from 'clsx';
 
 const About: React.FC = () => {
 	const navigate = useNavigate();
@@ -19,7 +20,7 @@ const About: React.FC = () => {
 		<div className={styles.page}>
 			<h2>关于我们</h2>
 			<p>这是一个使用React + TypeScript + Less + Webpack构建的项目。</p>
-			<div>count: {count}</div>
+			<div className={clsx('count', count % 2 === 0 && 'greenColor')}>count: {count}</div>
 			<button
 				onClick={() => {
 					setCount(count + 1);
