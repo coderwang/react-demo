@@ -1,6 +1,11 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const ServerProxy = require('./serverProxy');
+
+console.log('🚀 webpack run: NODE_ENV =>', process.env.NODE_ENV);
+console.log('🚀 webpack run: PACKAGE_ENV =>', process.env.PACKAGE_ENV);
+console.log('🚀 webpack run: useProxy =>', process.env.useProxy);
 
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -14,8 +19,8 @@ module.exports = {
 	resolve: {
 		extensions: ['.ts', '.tsx', '.js', '.jsx'],
 		alias: {
-			'@': path.resolve(__dirname, './src'),
-			assets: path.resolve(__dirname, 'src/assets'),
+			'@': path.resolve(__dirname, '../src'),
+			assets: path.resolve(__dirname, '../src/assets'),
 		},
 	},
 	module: {
@@ -97,6 +102,7 @@ module.exports = {
 		port: 3000,
 		open: true,
 		historyApiFallback: true, // 解决刷新404问题
+		proxy: ServerProxy,
 	},
 	devtool: isDev ? 'eval-cheap-module-source-map' : 'hidden-source-map',
 };
