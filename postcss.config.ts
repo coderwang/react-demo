@@ -1,6 +1,6 @@
-const pxToViewport = require('postcss-px-to-viewport');
+import pxToViewport from 'postcss-px-to-viewport';
 
-module.exports = {
+const PostcssConfig = {
 	plugins: [
 		pxToViewport({
 			viewportWidth: 375, // 设计稿的视口宽度
@@ -14,3 +14,5 @@ module.exports = {
 		}),
 	],
 };
+
+export default PostcssConfig;

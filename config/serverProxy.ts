@@ -4,11 +4,13 @@ const target = {
 	pre: 'https://m-pre.offertoday.com/wapi',
 };
 
-module.exports = [
+const ServerProxy = [
 	{
 		context: ['/api'],
-		target: target[process.env.useProxy],
+		target: target[process.env.useProxy as keyof typeof target],
 		pathRewrite: { '^/api': '' },
 		changeOrigin: true,
 	},
 ];
+
+export default ServerProxy;

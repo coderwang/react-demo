@@ -1,7 +1,13 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const ServerProxy = require('./serverProxy');
+import path from 'path';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import ServerProxy from './serverProxy';
+import { Configuration as WebpackConfiguration } from 'webpack';
+import { Configuration as WebpackDevServerConfiguration } from 'webpack-dev-server';
+
+interface Configuration extends WebpackConfiguration {
+	devServer?: WebpackDevServerConfiguration;
+}
 
 console.log('🚀 webpack run: NODE_ENV =>', process.env.NODE_ENV);
 console.log('🚀 webpack run: PACKAGE_ENV =>', process.env.PACKAGE_ENV);
@@ -9,12 +15,11 @@ console.log('🚀 webpack run: useProxy =>', process.env.useProxy);
 
 const isDev = process.env.NODE_ENV === 'development';
 
-module.exports = {
+const WebpackConfig: Configuration = {
 	entry: './src/index.tsx',
 	output: {
 		path: path.resolve(__dirname, 'dist'),
 		filename: 'bundle.js',
-		// publicPath: '/', // 添加这一行
 	},
 	resolve: {
 		extensions: ['.ts', '.tsx', '.js', '.jsx'],
@@ -106,3 +111,5 @@ module.exports = {
 	},
 	devtool: isDev ? 'eval-cheap-module-source-map' : 'hidden-source-map',
 };
+
+export default WebpackConfig;
