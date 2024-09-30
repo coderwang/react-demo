@@ -2,7 +2,7 @@ import path from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import ServerProxy from './serverProxy';
-import { Configuration as WebpackConfiguration } from 'webpack';
+import { DefinePlugin, Configuration as WebpackConfiguration } from 'webpack';
 import { Configuration as WebpackDevServerConfiguration } from 'webpack-dev-server';
 
 interface Configuration extends WebpackConfiguration {
@@ -93,6 +93,9 @@ const WebpackConfig: Configuration = {
 		],
 	},
 	plugins: [
+		new DefinePlugin({
+			'process.env.PACKAGE_ENV': JSON.stringify(process.env.PACKAGE_ENV),
+		}),
 		new HtmlWebpackPlugin({
 			template: './public/index.html',
 		}),
