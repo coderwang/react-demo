@@ -1,3 +1,4 @@
+// @ts-expect-error 类型声明文件不存在
 import pxToViewport from 'postcss-px-to-viewport';
 
 const PostcssConfig = {
