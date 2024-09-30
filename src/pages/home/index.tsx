@@ -1,16 +1,19 @@
 import { getPokemonInfo } from '@/services/api';
 import { useAtom } from 'jotai';
-import React, { useState } from 'react';
+import React from 'react';
 import { messageAtom } from './store';
+import useSWR from 'swr';
 
 const Home: React.FC = () => {
 	const [message, setMessage] = useAtom(messageAtom);
-	const [pokemonImage, setPokemonImage] = useState('');
 
-	const handleGetPokemonInfo = async () => {
-		const res = await getPokemonInfo();
-		setPokemonImage(res.data.sprites.default);
-	};
+	const { data, isLoading } = useSWR('getPokemonInfo', () => {
+		return getPokemonInfo();
+	});
+
+	if (isLoading) {
+		return <div>Loading...</div>;
+	}
 
 	return (
 		<div>
@@ -26,9 +29,8 @@ const Home: React.FC = () => {
 					}}
 				/>
 			</p>
-			<button onClick={handleGetPokemonInfo}>获取宝可梦信息</button>
 			<br />
-			{pokemonImage && <img src={pokemonImage} alt="pokemon" />}
+			{data && data.data.sprites.default && <img src={data.data.sprites.default} alt="pokemon" />}
 		</div>
 	);
 };
