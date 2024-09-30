@@ -12,8 +12,6 @@ if (process.env.PACKAGE_ENV !== 'prod') {
 	import('eruda').then((eruda) => eruda.default.init());
 }
 
-const BigSpinner: React.FC = () => <div>Loading...</div>;
-
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
 root.render(
@@ -21,7 +19,7 @@ root.render(
 	<JotaiProvider store={store}>
 		<SWRConfig value={{ revalidateOnFocus: false }}>
 			<AliveScope>
-				<RouterProvider router={router} fallbackElement={<BigSpinner />} />
+				<RouterProvider router={router} />
 			</AliveScope>
 		</SWRConfig>
 	</JotaiProvider>,

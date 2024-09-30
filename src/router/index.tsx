@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { createBrowserRouter, RouteObject } from 'react-router-dom';
 import App from '../App';
-import Home from '../pages/home';
-import About from '../pages/about';
-import Profile from '../pages/profile';
 import KeepAlive from 'react-activation';
-import List from '@/pages/list';
+
+const Home = lazy(() => import('@/pages/home'));
+const About = lazy(() => import('@/pages/about'));
+const Profile = lazy(() => import('@/pages/profile'));
+const List = lazy(() => import('@/pages/list'));
+
+const Loading = () => <div>加载中...</div>;
 
 const routes: RouteObject[] = [
 	{
@@ -14,23 +17,37 @@ const routes: RouteObject[] = [
 		children: [
 			{
 				index: true,
-				element: <Home />,
+				element: (
+					<Suspense fallback={<Loading />}>
+						<Home />
+					</Suspense>
+				),
 			},
 			{
 				path: 'list',
-				element: <List />,
+				element: (
+					<Suspense fallback={<Loading />}>
+						<List />
+					</Suspense>
+				),
 			},
 			{
 				path: 'about',
 				element: (
 					<KeepAlive saveScrollPosition="screen">
-						<About />
+						<Suspense fallback={<Loading />}>
+							<About />
+						</Suspense>
 					</KeepAlive>
 				),
 			},
 			{
 				path: 'profile',
-				element: <Profile />,
+				element: (
+					<Suspense fallback={<Loading />}>
+						<Profile />
+					</Suspense>
+				),
 			},
 		],
 	},

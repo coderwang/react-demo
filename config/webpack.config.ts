@@ -18,8 +18,9 @@ const isDev = process.env.NODE_ENV === 'development';
 const WebpackConfig: Configuration = {
 	entry: './src/index.tsx',
 	output: {
-		path: path.resolve(__dirname, 'dist'),
+		path: path.resolve(__dirname, '../dist'),
 		filename: 'bundle.js',
+		clean: true,
 	},
 	resolve: {
 		extensions: ['.ts', '.tsx', '.js', '.jsx'],
