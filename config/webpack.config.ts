@@ -108,7 +108,7 @@ const WebpackConfig: Configuration = {
 		static: {
 			directory: path.join(__dirname, 'public'),
 		},
-		port: 3000,
+		port: 'auto', // 自动选择端口
 		open: true,
 		historyApiFallback: true, // 解决刷新404问题
 		proxy: ServerProxy,
