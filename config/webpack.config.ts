@@ -98,7 +98,7 @@ const WebpackConfig: Configuration = {
 			'process.env.PACKAGE_ENV': JSON.stringify(process.env.PACKAGE_ENV),
 		}),
 		new HtmlWebpackPlugin({
-			template: './public/index.html',
+			template: path.resolve(__dirname, '../public/index.html'),
 		}),
 		new MiniCssExtractPlugin({
 			filename: 'css/[name]-[contenthash].css',
@@ -106,7 +106,7 @@ const WebpackConfig: Configuration = {
 	],
 	devServer: {
 		static: {
-			directory: path.join(__dirname, 'public'),
+			directory: path.join(__dirname, '../public'), // 启动开发服务器时，指定静态资源目录
 		},
 		port: 'auto', // 自动选择端口
 		open: true,
