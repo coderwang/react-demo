@@ -1,6 +1,7 @@
 import path from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
 import ServerProxy from './serverProxy';
 import { DefinePlugin, Configuration as WebpackConfiguration } from 'webpack';
 import { Configuration as WebpackDevServerConfiguration } from 'webpack-dev-server';
@@ -94,6 +95,12 @@ const WebpackConfig: Configuration = {
 		],
 	},
 	plugins: [
+		new CopyWebpackPlugin({
+			patterns: [
+				{ from: path.resolve(__dirname, '../public'), to: '' },
+				// 可以添加多个 pattern 来复制多个不同的源到不同的目标位置
+			],
+		}),
 		new DefinePlugin({
 			'process.env.PACKAGE_ENV': JSON.stringify(process.env.PACKAGE_ENV),
 		}),
