@@ -99,6 +99,7 @@ const WebpackConfig: Configuration = {
 		}),
 		new HtmlWebpackPlugin({
 			template: path.resolve(__dirname, '../src/index.ejs'),
+			favicon: path.resolve(__dirname, '../public/favicon.ico'),
 		}),
 		new MiniCssExtractPlugin({
 			filename: 'css/[name]-[contenthash].css',
