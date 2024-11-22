@@ -98,7 +98,7 @@ const WebpackConfig: Configuration = {
 			'process.env.PACKAGE_ENV': JSON.stringify(process.env.PACKAGE_ENV),
 		}),
 		new HtmlWebpackPlugin({
-			template: path.resolve(__dirname, '../public/index.html'),
+			template: path.resolve(__dirname, '../src/index.ejs'),
 		}),
 		new MiniCssExtractPlugin({
 			filename: 'css/[name]-[contenthash].css',
