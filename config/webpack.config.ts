@@ -120,6 +120,7 @@ const WebpackConfig: Configuration = {
 		open: true,
 		historyApiFallback: true, // 解决刷新404问题
 		proxy: ServerProxy,
+		allowedHosts: 'all', // 不校验host，避免使用whistle代理后，无法拿到开发服务器资源
 	},
 	devtool: isDev ? 'eval-cheap-module-source-map' : 'hidden-source-map',
 };
