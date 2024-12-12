@@ -1,7 +1,7 @@
 import React from 'react';
 import avatar from 'assets/images/avatar.png';
 import { ReactComponent as Clock } from 'assets/svg/clock.svg';
-import styles from './index.less';
+import styles from './index.module.less';
 import { useAtomValue } from 'jotai';
 import { messageAtom } from '../home/store';
 import store from '@/store';

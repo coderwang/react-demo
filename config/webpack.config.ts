@@ -38,9 +38,9 @@ const WebpackConfig: Configuration = {
 				use: 'babel-loader',
 			},
 			{
-				test: /\.less$/,
+				test: /\.module\.(c|le)ss$/,
 				use: [
-					isDev ? 'style-loader' : MiniCssExtractPlugin.loader, // 开发环境使用style-loader（hmr），生产环境使用MiniCssExtractPlugin.loader（缓存）
+					isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
 					{
 						loader: 'css-loader',
 						options: {
@@ -51,10 +51,30 @@ const WebpackConfig: Configuration = {
 									? '[path][name]__[local]--[hash:base64:5]'
 									: '[local]_[hash:base64:5]',
 							},
+							importLoaders: 2, // 确保遇到 @import 的文件，也先经过less-loader，再经过postcss-loader
+							// 0 => no loaders (default);
+							// 1 => postcss-loader;
+							// 2 => postcss-loader, less-loader
 						},
 					},
-					'less-loader',
 					'postcss-loader',
+					'less-loader', // 优先处理less，再交给postcss处理
+				],
+			},
+			{
+				test: /\.(c|le)ss$/,
+				exclude: /\.module\.(c|le)ss$/,
+				use: [
+					isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+					{
+						loader: 'css-loader',
+						options: {
+							modules: false,
+							importLoaders: 2,
+						},
+					},
+					'postcss-loader',
+					'less-loader',
 				],
 			},
 			{

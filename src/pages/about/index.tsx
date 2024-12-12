@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useActivate, useUnactivate } from 'react-activation';
 import { useNavigate } from 'react-router-dom';
-import styles from './index.less';
+import styles from './index.module.less';
 import clsx from 'clsx';
 
 const About: React.FC = () => {
