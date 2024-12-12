@@ -63,7 +63,7 @@ const WebpackConfig: Configuration = {
 			},
 			{
 				test: /\.(c|le)ss$/,
-				exclude: /\.module\.(c|le)ss$/,
+				exclude: /\.module\.(c|le)ss$/, // 确保普通的 .css 和 .less 文件不会匹配到模块化规则（去掉这行会报错，暂不知道原因）
 				use: [
 					isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
 					{
