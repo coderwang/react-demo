@@ -1,12 +1,12 @@
 import React, { lazy, Suspense } from 'react';
+import KeepAlive from 'react-activation';
 import { createBrowserRouter, RouteObject } from 'react-router-dom';
 import App from '../App';
-import KeepAlive from 'react-activation';
 
-const Home = lazy(() => import('@/pages/home'));
-const About = lazy(() => import('@/pages/about'));
-const Profile = lazy(() => import('@/pages/profile'));
-const List = lazy(() => import('@/pages/list'));
+const Home = lazy(() => import(/* webpackChunkName: "home" */ '@/pages/home'));
+const About = lazy(() => import(/* webpackChunkName: "about" */ '@/pages/about'));
+const Profile = lazy(() => import(/* webpackChunkName: "profile" */ '@/pages/profile'));
+const List = lazy(() => import(/* webpackChunkName: "list" */ '@/pages/list'));
 
 const Loading = () => <div>加载中...</div>;
 
