@@ -1,10 +1,10 @@
-import path from 'path';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import CopyWebpackPlugin from 'copy-webpack-plugin';
-import ServerProxy from './serverProxy';
+import path from 'path';
 import { DefinePlugin, Configuration as WebpackConfiguration } from 'webpack';
 import { Configuration as WebpackDevServerConfiguration } from 'webpack-dev-server';
+import ServerProxy from './serverProxy';
 
 interface Configuration extends WebpackConfiguration {
 	devServer?: WebpackDevServerConfiguration;
@@ -20,7 +20,10 @@ const WebpackConfig: Configuration = {
 	entry: './src/index.tsx',
 	output: {
 		path: path.resolve(__dirname, '../dist'),
-		filename: 'bundle.js',
+		publicPath: '/', // 指定打包后资源的路径前缀
+		filename: 'js/[name].[contenthash].js', // 入口文件的名称
+		chunkFilename: 'js/[name].[contenthash].chunk.js', // 非入口文件的名称
+		assetModuleFilename: 'assets/[name].[hash][ext]', // 资源文件的名称，优先级低于loader中的配置
 		clean: true,
 	},
 	resolve: {
