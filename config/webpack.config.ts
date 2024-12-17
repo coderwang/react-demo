@@ -1,8 +1,9 @@
 import CopyWebpackPlugin from 'copy-webpack-plugin';
+import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import path from 'path';
-import { DefinePlugin, Configuration as WebpackConfiguration } from 'webpack';
+import { Chunk, DefinePlugin, Module, Configuration as WebpackConfiguration } from 'webpack';
 import { Configuration as WebpackDevServerConfiguration } from 'webpack-dev-server';
 import ServerProxy from './serverProxy';
 
@@ -135,6 +136,32 @@ const WebpackConfig: Configuration = {
 			filename: 'css/[name]-[contenthash].css',
 		}),
 	],
+	optimization: {
+		// `...` 表示保留webpack默认的压缩器（如terser-webpack-plugin）
+		// CssMinimizerPlugin 用于压缩CSS文件
+		minimizer: [`...`, new CssMinimizerPlugin()],
+		splitChunks: {
+			chunks: 'all',
+			name: (_module: Module, chunks: Chunk[], _cacheGroupKey: string) => {
+				return `vendor-${chunks[0].name}`;
+			},
+			cacheGroups: {
+				// 将node_modules中的第三方库打包成一个名为vendors的js文件
+				vendors: {
+					test: /[\\/]node_modules[\\/]/,
+					name: 'vendors',
+					priority: -10,
+				},
+				// 将项目中被多个chunk引用的模块打包成一个名为common的js文件
+				common: {
+					name: 'common',
+					minChunks: 2,
+					priority: -20,
+				},
+			},
+		},
+		runtimeChunk: 'single', // 将webpack的runtime代码单独打包成一个名为runtime的js文件
+	},
 	devServer: {
 		static: {
 			directory: path.join(__dirname, '../public'), // 启动开发服务器时，指定静态资源目录
