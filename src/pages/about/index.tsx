@@ -1,11 +1,9 @@
 import clsx from 'clsx';
 import React, { useState } from 'react';
 import { useActivate, useUnactivate } from 'react-activation';
-import { useNavigate } from 'react-router-dom';
 import styles from './index.module.less';
 
 const About: React.FC = () => {
-	const navigate = useNavigate();
 	const [count, setCount] = useState(0);
 
 	useActivate(() => {
@@ -18,7 +16,7 @@ const About: React.FC = () => {
 
 	return (
 		<div className={styles.page}>
-			<h2>关于我们</h2>
+			<h2>关于(KeepAlive)</h2>
 			<p>这是一个使用React + TypeScript + Less + Webpack构建的项目。</p>
 			<div className={clsx('count', count % 2 === 0 && 'greenColor')}>count: {count}</div>
 			<button
@@ -27,14 +25,6 @@ const About: React.FC = () => {
 				}}
 			>
 				count++
-			</button>
-			<div className="whiteBox" />
-			<button
-				onClick={() => {
-					navigate('/');
-				}}
-			>
-				jump to home
 			</button>
 		</div>
 	);

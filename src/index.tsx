@@ -1,11 +1,12 @@
-import './i18n';
+import { Provider as JotaiProvider } from 'jotai';
 import React from 'react';
+import { AliveScope } from 'react-activation';
 import ReactDOM from 'react-dom/client';
 import { RouterProvider } from 'react-router-dom';
-import router from './router';
-import { AliveScope } from 'react-activation';
-import { Provider as JotaiProvider } from 'jotai';
 import { SWRConfig } from 'swr';
+import './assets/styles/normalize.less';
+import './i18n';
+import router from './router';
 import store from './store';
 
 if (process.env.PACKAGE_ENV !== 'prod') {

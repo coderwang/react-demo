@@ -1,7 +1,7 @@
+import CommonLayout from '@/wrapper/CommonLayout';
 import React, { lazy, Suspense } from 'react';
 import KeepAlive from 'react-activation';
 import { createBrowserRouter, RouteObject } from 'react-router-dom';
-import App from '../App';
 
 const Home = lazy(() => import(/* webpackChunkName: "home" */ '@/pages/home'));
 const About = lazy(() => import(/* webpackChunkName: "about" */ '@/pages/about'));
@@ -15,7 +15,7 @@ const Loading = () => <div>加载中...</div>;
 const routes: RouteObject[] = [
 	{
 		path: '/',
-		element: <App />,
+		element: <CommonLayout />,
 		children: [
 			{
 				index: true,
@@ -51,8 +51,14 @@ const routes: RouteObject[] = [
 					</Suspense>
 				),
 			},
+		],
+	},
+	{
+		path: '404',
+		element: <CommonLayout hiddenHeader hiddenFooter />,
+		children: [
 			{
-				path: '404',
+				index: true,
 				element: (
 					<Suspense fallback={<Loading />}>
 						<NotFound />
@@ -62,12 +68,17 @@ const routes: RouteObject[] = [
 		],
 	},
 	{
-		path: '*',
-		element: (
-			<Suspense fallback={<Loading />}>
-				<NotFound />
-			</Suspense>
-		),
+		element: <CommonLayout hiddenHeader hiddenFooter />,
+		children: [
+			{
+				path: '*',
+				element: (
+					<Suspense fallback={<Loading />}>
+						<NotFound />
+					</Suspense>
+				),
+			},
+		],
 	},
 ];
 

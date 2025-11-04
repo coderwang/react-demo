@@ -1,22 +1,26 @@
-import React from 'react';
+import store from '@/store';
 import avatar from 'assets/images/avatar.png';
 import { ReactComponent as Clock } from 'assets/svg/clock.svg';
-import styles from './index.module.less';
 import { useAtomValue } from 'jotai';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { messageAtom } from '../home/store';
-import store from '@/store';
+import styles from './index.module.less';
 
 const Page = () => {
+	const navigate = useNavigate();
 	const message = useAtomValue(messageAtom);
 
 	return (
 		<div className={styles.page}>
+			<h2>个人页</h2>
 			<p>收到的message: {message}</p>
 			<button onClick={() => store.set(messageAtom, '')}>重置message</button>
-			<br />
 			<img className="avatar" src={avatar} alt="" />
-			<br />
-			<Clock className="clock" />
+			<Clock width={75} height={75} />
+			<div>
+				<button onClick={() => navigate('/404')}>跳转到404</button>
+			</div>
 		</div>
 	);
 };
