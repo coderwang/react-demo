@@ -8,6 +8,8 @@ const About = lazy(() => import(/* webpackChunkName: "about" */ '@/pages/about')
 const Profile = lazy(() => import(/* webpackChunkName: "profile" */ '@/pages/profile'));
 const List = lazy(() => import(/* webpackChunkName: "list" */ '@/pages/list'));
 
+const NotFound = lazy(() => import(/* webpackChunkName: "notFound" */ './404'));
+
 const Loading = () => <div>加载中...</div>;
 
 const routes: RouteObject[] = [
@@ -49,7 +51,23 @@ const routes: RouteObject[] = [
 					</Suspense>
 				),
 			},
+			{
+				path: '404',
+				element: (
+					<Suspense fallback={<Loading />}>
+						<NotFound />
+					</Suspense>
+				),
+			},
 		],
+	},
+	{
+		path: '*',
+		element: (
+			<Suspense fallback={<Loading />}>
+				<NotFound />
+			</Suspense>
+		),
 	},
 ];
 

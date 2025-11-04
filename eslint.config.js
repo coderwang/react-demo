@@ -1,10 +1,10 @@
-const reactRecommended = require('eslint-plugin-react/configs/recommended');
-const tsRecommended = require('@typescript-eslint/eslint-plugin').configs['recommended'];
+const reactPlugin = require('eslint-plugin-react');
+const prettierPlugin = require('eslint-plugin-prettier');
 const prettierConfig = require('eslint-config-prettier');
 
 module.exports = [
 	{
-		files: ['**/*.{ts,tsx}'],
+		files: ['**/*.{ts,tsx,js,jsx}'],
 		languageOptions: {
 			parser: require('@typescript-eslint/parser'),
 			parserOptions: {
@@ -17,17 +17,17 @@ module.exports = [
 		},
 		plugins: {
 			'@typescript-eslint': require('@typescript-eslint/eslint-plugin'),
-			react: require('eslint-plugin-react'),
-			prettier: require('eslint-plugin-prettier'),
+			react: reactPlugin,
+			prettier: prettierPlugin,
 		},
 		rules: {
-			...reactRecommended.rules,
-			...tsRecommended.rules,
-			...prettierConfig.rules,
-			'prettier/prettier': 'off', // 关闭prettier检查
+			// React 基础规则
+			'react/react-in-jsx-scope': 'off',
+			'react/prop-types': 'off',
+
+			// TypeScript 规则
 			'@typescript-eslint/no-explicit-any': 'error',
 			'@typescript-eslint/explicit-function-return-type': 'off',
-			'react/prop-types': 'off',
 			'@typescript-eslint/no-unused-vars': [
 				'error',
 				{
@@ -35,6 +35,9 @@ module.exports = [
 					varsIgnorePattern: '^_',
 				},
 			],
+
+			// Prettier
+			'prettier/prettier': 'off',
 		},
 		settings: {
 			react: {
@@ -42,4 +45,6 @@ module.exports = [
 			},
 		},
 	},
+	// 关闭 prettier 与 eslint 冲突的规则
+	prettierConfig,
 ];
