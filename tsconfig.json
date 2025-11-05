@@ -10,16 +10,17 @@
 		"strict": true,
 		"forceConsistentCasingInFileNames": true,
 		"noFallthroughCasesInSwitch": true,
-		"module": "commonjs",
-		"moduleResolution": "node",
+		"module": "esnext",
+		"moduleResolution": "bundler",
 		"resolveJsonModule": true,
 		"isolatedModules": true,
-		"noEmit": false, // 将这里改为false
+		"noEmit": true,
 		"jsx": "react",
 		"paths": {
 			"@/*": ["src/*"],
 			"assets/*": ["src/assets/*"]
 		}
 	},
-	"include": ["./**/*.ts", "./**/*.tsx", "./**/*.d.ts"]
+	"include": ["src/**/*.ts", "src/**/*.tsx", "global.d.ts"],
+	"exclude": ["node_modules", "dist", "config"]
 }
