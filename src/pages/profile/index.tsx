@@ -1,14 +1,14 @@
+import useNavigateAdaptLang from '@/hooks/useNavigateAdaptLang';
 import store from '@/store';
 import avatar from 'assets/images/avatar.png';
 import { ReactComponent as Clock } from 'assets/svg/clock.svg';
 import { useAtomValue } from 'jotai';
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import { messageAtom } from '../home/store';
 import styles from './index.module.less';
 
 const Page = () => {
-	const navigate = useNavigate();
+	const navigate = useNavigateAdaptLang();
 	const message = useAtomValue(messageAtom);
 
 	return (

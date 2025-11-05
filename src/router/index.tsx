@@ -25,6 +25,20 @@ const routes: RouteObject[] = [
 					</Suspense>
 				),
 			},
+		],
+	},
+	{
+		path: '/:lang',
+		element: <CommonLayout />,
+		children: [
+			{
+				index: true,
+				element: (
+					<Suspense fallback={<Loading />}>
+						<Home />
+					</Suspense>
+				),
+			},
 			{
 				path: 'list',
 				element: (
@@ -54,11 +68,11 @@ const routes: RouteObject[] = [
 		],
 	},
 	{
-		path: '404',
+		path: '/:lang',
 		element: <CommonLayout hiddenHeader hiddenFooter />,
 		children: [
 			{
-				index: true,
+				path: '404',
 				element: (
 					<Suspense fallback={<Loading />}>
 						<NotFound />
@@ -68,6 +82,7 @@ const routes: RouteObject[] = [
 		],
 	},
 	{
+		path: '/:lang',
 		element: <CommonLayout hiddenHeader hiddenFooter />,
 		children: [
 			{

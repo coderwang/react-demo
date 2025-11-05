@@ -5,7 +5,7 @@ const getDefaultLang = () => {
 	return navigator.language.substring(0, 2) === 'zh' ? LanguageEnum.ZH : LanguageEnum.EN;
 };
 
-export const langAtom = atomWithStorage<LanguageEnum>(
+export const languageAtom = atomWithStorage<LanguageEnum>(
 	'__react-demo-language',
 	getDefaultLang(),
 	undefined,

@@ -1,12 +1,14 @@
 import { LanguageEnum } from '@/consts/enum';
-import { langAtom } from '@/store/lang';
-import { useAtom } from 'jotai';
+import { languageAtom } from '@/store/language';
+import { useAtomValue } from 'jotai';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
 const Page: React.FC = () => {
 	const { t } = useTranslation();
-	const [lang, setLang] = useAtom(langAtom);
+	const language = useAtomValue(languageAtom);
+	const navigate = useNavigate();
 
 	return (
 		<div
@@ -20,7 +22,7 @@ const Page: React.FC = () => {
 			<h2>列表页</h2>
 			<button
 				onClick={() => {
-					setLang(lang === LanguageEnum.EN ? LanguageEnum.ZH : LanguageEnum.EN);
+					navigate(`/${language === LanguageEnum.EN ? LanguageEnum.ZH : LanguageEnum.EN}/list`);
 				}}
 			>
 				switch lang

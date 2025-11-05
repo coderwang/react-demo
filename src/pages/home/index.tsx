@@ -1,12 +1,12 @@
+import useNavigateAdaptLang from '@/hooks/useNavigateAdaptLang';
 import { getPokemonInfo } from '@/services/api';
 import { useAtom } from 'jotai';
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import useSWR from 'swr';
 import { messageAtom } from './store';
 
 const Home: React.FC = () => {
-	const navigate = useNavigate();
+	const navigate = useNavigateAdaptLang();
 	const [message, setMessage] = useAtom(messageAtom);
 
 	const { data, isLoading } = useSWR('getPokemonInfo', () => {

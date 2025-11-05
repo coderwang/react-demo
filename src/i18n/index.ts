@@ -1,5 +1,5 @@
 import store from '@/store';
-import { langAtom } from '@/store/lang';
+import { languageAtom } from '@/store/language';
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import enResource from './locales/en.json';
@@ -14,13 +14,13 @@ const resources = {
 	},
 };
 
-store.sub(langAtom, () => {
-	i18n.changeLanguage(store.get(langAtom));
+store.sub(languageAtom, () => {
+	i18n.changeLanguage(store.get(languageAtom));
 });
 
 i18n.use(initReactI18next).init({
 	resources,
-	lng: store.get(langAtom), // 默认语言
+	lng: store.get(languageAtom), // 默认语言
 	fallbackLng: 'en', // 兜底语言
 	defaultNS: 'translation', // 默认命名空间
 	interpolation: {

@@ -1,17 +1,15 @@
+import LinkAdaptLang from '@/components/LinkAdaptLang';
 import React from 'react';
-import { Link, Outlet, useOutletContext } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import styles from './CommonLayout.module.less';
+import LanguageInterceptor from './LanguageInterceptor';
 
 interface CommonLayoutProps {
 	hiddenHeader?: boolean;
 	hiddenFooter?: boolean;
 }
 
-interface LayoutContext {
-	// 可以在这里定义需要传递给子组件的上下文
-}
-
-const CommonLayout: React.FC<CommonLayoutProps> = ({
+const CommonLayoutInner: React.FC<CommonLayoutProps> = ({
 	hiddenHeader = false,
 	hiddenFooter = false,
 }) => {
@@ -21,24 +19,24 @@ const CommonLayout: React.FC<CommonLayoutProps> = ({
 				<header className={styles.header}>
 					<ul className={styles.navList}>
 						<li className={styles.navItem}>
-							<Link to="/" className={styles.navLink}>
+							<LinkAdaptLang to="/" className={styles.navLink}>
 								首页
-							</Link>
+							</LinkAdaptLang>
 						</li>
 						<li className={styles.navItem}>
-							<Link to="/list" className={styles.navLink}>
+							<LinkAdaptLang to="/list" className={styles.navLink}>
 								列表
-							</Link>
+							</LinkAdaptLang>
 						</li>
 						<li className={styles.navItem}>
-							<Link to="/about" className={styles.navLink}>
+							<LinkAdaptLang to="/about" className={styles.navLink}>
 								关于
-							</Link>
+							</LinkAdaptLang>
 						</li>
 						<li className={styles.navItem}>
-							<Link to="/profile" className={styles.navLink}>
+							<LinkAdaptLang to="/profile" className={styles.navLink}>
 								个人
-							</Link>
+							</LinkAdaptLang>
 						</li>
 					</ul>
 				</header>
@@ -55,12 +53,12 @@ const CommonLayout: React.FC<CommonLayoutProps> = ({
 	);
 };
 
-export default CommonLayout;
-
-// 导出类型供子组件使用
-export type { CommonLayoutProps, LayoutContext };
-
-// 导出 hook 供子组件获取布局上下文
-export const useLayout = () => {
-	return useOutletContext<LayoutContext>();
+const CommonLayout: React.FC<CommonLayoutProps> = (props) => {
+	return (
+		<LanguageInterceptor>
+			<CommonLayoutInner {...props} />
+		</LanguageInterceptor>
+	);
 };
+
+export default CommonLayout;
