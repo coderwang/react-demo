@@ -1,8 +1,12 @@
+import { LanguageEnum } from '@/consts/enum';
+import { langAtom } from '@/store/lang';
+import { useAtom } from 'jotai';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 const Page: React.FC = () => {
-	const { t, i18n } = useTranslation();
+	const { t } = useTranslation();
+	const [lang, setLang] = useAtom(langAtom);
 
 	return (
 		<div
@@ -14,7 +18,11 @@ const Page: React.FC = () => {
 			}}
 		>
 			<h2>列表页</h2>
-			<button onClick={() => i18n.changeLanguage(i18n.language === 'en' ? 'zh' : 'en')}>
+			<button
+				onClick={() => {
+					setLang(lang === LanguageEnum.EN ? LanguageEnum.ZH : LanguageEnum.EN);
+				}}
+			>
 				switch lang
 			</button>
 			<p>{t('i18n_text')}</p>
