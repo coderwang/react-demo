@@ -1,3 +1,4 @@
 {
-  "i18n_text": "i18next是一个用JavaScript编写的国际化框架。但远不止如此！"
+  "i18n_text": "i18next是一个用JavaScript编写的国际化框架。但远不止如此！",
+  "trans_text": "这是一个<italic>{{custom}}</italic>文本"
 }

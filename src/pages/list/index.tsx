@@ -2,7 +2,7 @@ import { LanguageEnum } from '@/consts/enum';
 import { languageAtom } from '@/store/language';
 import { useAtomValue } from 'jotai';
 import React from 'react';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 const Page: React.FC = () => {
@@ -28,6 +28,9 @@ const Page: React.FC = () => {
 				switch lang
 			</button>
 			<p>{t('i18n_text')}</p>
+			<div>
+				<Trans i18nKey="trans_text" values={{ custom: 'custom' }} components={{ italic: <i /> }} />
+			</div>
 		</div>
 	);
 };
