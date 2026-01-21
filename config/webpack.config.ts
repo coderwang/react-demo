@@ -44,6 +44,10 @@ const WebpackConfig: Configuration = {
 			{
 				test: /\.module\.(c|le)ss$/,
 				use: [
+					/**
+					 * 开发环境使用style-loader，在js中动态插入style标签
+					 * 生产环境使用MiniCssExtractPlugin.loader，将css标记出来，在打包阶段使用MiniCssExtractPlugin提取出来，生成单独的css文件，并用link标签引入
+					 */
 					isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
 					{
 						loader: 'css-loader',
